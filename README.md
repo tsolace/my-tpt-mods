@@ -39,3 +39,7 @@ Adds elements TRES, RBOM, TTIM, TCOL
 - RBOM: Random bomb, particle changes to a random element after 30 seconds of existance (element randomizer from jacob1's random element mod)
 - TTIM: Type timer, changes into its ctype after 30 seconds (variable `timertype` can be changed in console to change default ctype)
 - TCOL: Timed color, changes color of all particles every tenth of a second.
+
+## UDParticle.lua (and udprelay.lua.notamod)
+Adds the UDP element. Works like WIFI, transmits its temp (in kelvin, floored to an integer) to a UDP relay server. Takes spark from NSCN(?).
+UDP relay server is (`udprelay.lua.notamod`) can be run with Lua/LuaJIT on the command line. Be sure to install luasocket (`luarocks(-5.1) install luasocket`)
