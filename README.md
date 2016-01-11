@@ -26,12 +26,12 @@ Numpad PLUS for antigravity mode (to stop falling), Numpad 0 to toggle mining mo
 ## SingleGate.lua
 Implements all of iamdumb's logic gates into one particle. Change tmp value to change functionality.
 Functionality for tmp:
-1. AND: SPRKs nearby NSCN when powered by 2 or more PSCN
-2. OR: Conducts from PSCN and to NSCN
-3. NOT: SPRKs nearby NSCN unless powered by PSCN
-4. XOR: SPRKs nearby NSCN if powered by ONE PSCN
-5. NAND: SPRKs nearby NSCN unless powered by 2 or more PSCN
-6. for XNOR: SPRKs nearby NSCN unless powered by ONE PSCN
+ 1. AND: SPRKs nearby NSCN when powered by 2 or more PSCN
+ 2. OR: Conducts from PSCN and to NSCN
+ 3. NOT: SPRKs nearby NSCN unless powered by PSCN
+ 4. XOR: SPRKs nearby NSCN if powered by ONE PSCN
+ 5. NAND: SPRKs nearby NSCN unless powered by 2 or more PSCN
+ 6. for XNOR: SPRKs nearby NSCN unless powered by ONE PSCN
 
 ## TimedElements.lua
 Adds elements TRES, RBOM, TTIM, TCOL
