@@ -1,0 +1,59 @@
+socket = require("socket")
+svrport = 25533
+local function server ()
+  local udp = assert(socket.udp())
+  assert(udp:setsockname("*",svrport))
+  udp:settimeout(0)
+  local function readall ()
+    local list = {}
+    while true do 
+      local data,from,port = udp:receivefrom()
+      if data == nil and from == "timeout" then return list end
+      assert(data,from) -- another error was thrown!
+      table.insert(list,{data = data, from = from, port = port})
+    end
+  end
+  local clientlist = {}
+  local clientids = {}
+  local clientidcnt = 1
+
+  local function broadcast (msg)
+    -- just send a message to everyone
+    for i,client in pairs(clientlist) do
+      udp:sendto(msg,client.from,client.port)
+    end
+  end
+  
+  local function received (from,port,data)
+    local clientid = clientids[from..port]
+    if not clientid then -- unkown client
+      if data == "hello" then
+        clientid,clientidcnt = clientidcnt,clientidcnt + 1
+        local client = {
+          id = clientid, 
+          from = from, 
+          port = port
+        }
+        clientlist[client.id] = client
+        clientids[from..port] = client.id
+        print("SERVER: NEW CLIENT")
+        --udp:sendto("connected "..client.id,from,port)
+        --broadcast("chat New client connected ("..client.id..")")
+        return -- in any case, just terminate her now
+      end
+    end
+    print("New data:\n" .. data .. "\n")
+    broadcast(data)
+  end
+  while true do
+    local msglist = readall()
+    for i,msg in ipairs(msglist) do 
+      received(msg.from,msg.port,msg.data)
+    end
+    --coroutine.yield() -- sleep
+    socket.select(nil, nil, 0.01)
+  end
+  udp:close()
+end
+
+server()
