@@ -50,7 +50,7 @@ end
 tpt.graphics_func(NPLMgraphics, tpt.element('nplm'))
 --[[end]]--
 
---[[FeynmanLgooMaker's Lua Elements Pack, REP
+--[[FeynmanLogoMaker's Lua Elements Pack, REP
 local REP = elements.allocate("FEYNMAN", "REP")
 elements.element(elements.FEYNMAN_PT_REP, elements.element(elements.DEFAULT_PT_BCOL))
 elements.property(elements.FEYNMAN_PT_REP, "Name", "REP")

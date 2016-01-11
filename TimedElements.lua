@@ -158,12 +158,12 @@ end)
 
 tpt.register_step(function ()
 	if checkedtime == 1 then
-		if os.time() > settime + 1 then
+		if socket.gettime() > settime + 0.1 then
 			nr, ng, nb = math.random(50,255), math.random(50,255), math.random(50,255)
 			checkedtime = 0
 		end
 	else
-		settime = os.time()
+		settime = socket.gettime()
 		checkedtime = 1
 	end
 end)
@@ -181,7 +181,7 @@ elements.element(elements.SOLACE_PT_TCOL, elements.element(elements.DEFAULT_PT_D
 --elements.property(elements.SOLACE_PT_TCOL, "AirLoss", 0.90)
 --elements.property(elements.SOLACE_PT_TCOL, "Weight", 3)
 elements.property(elements.SOLACE_PT_TCOL, "Name", "TCOL")
-elements.property(elements.SOLACE_PT_TCOL, "Description", "Random color every second")
+elements.property(elements.SOLACE_PT_TCOL, "Description", "Random color every tenth/second")
 elements.property(elements.SOLACE_PT_TCOL, "Color", 0xFFFFFF)
 elements.property(elements.SOLACE_PT_TCOL, "MenuSection", elem.SC_SPECIAL)
 elements.property(elements.SOLACE_PT_TCOL, "Graphics", function (i, r, g, b)
